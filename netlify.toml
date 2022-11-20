@@ -1,15 +1,5 @@
 [[redirects]]
-  from = "/getUsers"
-  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/getUsers"
-
-  from = "/createUser"
-  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/createUser"
-
-  from = "/edituser/:id"
-  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/edituser/:id"
-
-
-  from = "/deleteUser/:id"
-  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/deleteUser/:id"
-  status = 200
+  from = "/*"
+  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/getUsers/:splat"
+ status = 200
   
