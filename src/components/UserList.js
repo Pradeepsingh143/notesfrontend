@@ -4,7 +4,7 @@ export const UserList = () => {
   const [userData, setUserData] = useState(null);
 
   const fetchUserData = async () => {
-    const resp = await axios.get("/getUsers");
+    const resp = await axios.get("https://calm-plum-rattlesnake-shoe.cyclic.app/getUsers");
 
     // if No users are there please dont set the values
     // if (resp.data.users.length > 0) {
@@ -24,7 +24,7 @@ export const UserList = () => {
     if (!userName || !userEmail) {
       alert("Please Enter Name and Email Both");
     } else {
-    await axios.put(`/editUser/${user._id}`, {
+    await axios.put(`https://calm-plum-rattlesnake-shoe.cyclic.app//editUser/${user._id}`, {
         name: userName,
         email: userEmail,
       });
@@ -33,7 +33,7 @@ export const UserList = () => {
 
   // DELETE
   const handleDelete = async (userId) => {
-  await axios.delete(`/deleteUser/${userId}`);
+  await axios.delete(`https://calm-plum-rattlesnake-shoe.cyclic.app/deleteUser/${userId}`);
   };
   return (
     <section className="text-gray-600 body-font">
