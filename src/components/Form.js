@@ -12,7 +12,7 @@ export const Form = () => {
       name: userName,
       email: userEmail,
     };
-    await axios.post("http://localhost:4000/createUser", data);
+    await axios.post("/createUser", data);
   };
   // To handle the Default
   const handleSubmit = (event) => {

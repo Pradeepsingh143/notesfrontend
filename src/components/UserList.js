@@ -4,7 +4,7 @@ export const UserList = () => {
   const [userData, setUserData] = useState(null);
 
   const fetchUserData = async () => {
-    const resp = await axios.get("http://localhost:4000/getUsers");
+    const resp = await axios.get("/getUsers");
 
     // if No users are there please dont set the values
     // if (resp.data.users.length > 0) {
@@ -24,7 +24,7 @@ export const UserList = () => {
     if (!userName || !userEmail) {
       alert("Please Enter Name and Email Both");
     } else {
-    await axios.put(`http://localhost:4000/editUser/${user._id}`, {
+    await axios.put(`/editUser/${user._id}`, {
         name: userName,
         email: userEmail,
       });
@@ -33,7 +33,7 @@ export const UserList = () => {
 
   // DELETE
   const handleDelete = async (userId) => {
-  await axios.delete(`http://localhost:4000/deleteUser/${userId}`);
+  await axios.delete(`/deleteUser/${userId}`);
   };
   return (
     <section className="text-gray-600 body-font">
