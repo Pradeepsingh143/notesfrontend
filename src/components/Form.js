@@ -12,7 +12,8 @@ export const Form = () => {
       name: userName,
       email: userEmail,
     };
-    await axios.post("https://calm-plum-rattlesnake-shoe.cyclic.app/createUser", data);
+    await axios.post("/createUser", data);
+
   };
   // To handle the Default
   const handleSubmit = (event) => {
