@@ -2,4 +2,4 @@
   from = "/*"
   to = "https://calm-plum-rattlesnake-shoe.cyclic.app/getUsers"
   status = 200
-  header ={ Access-Control-Allow-Origin: "*" , Access-Control-Allow-Methods: {"GET" , "POST", "DELETE", "PUT"} , Access-Control-Allow-Headers: "X-Requested-With" }
+  
