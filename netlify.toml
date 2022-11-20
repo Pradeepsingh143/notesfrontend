@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/*"
-  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/getUsers"
+  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/*"
   status = 200
   
