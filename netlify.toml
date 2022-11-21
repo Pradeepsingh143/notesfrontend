@@ -1,1 +1,4 @@
-/*  https://calm-plum-rattlesnake-shoe.cyclic.app/:splat  200
+[[redirects]]
+  from = "/*"
+  to = "https://calm-plum-rattlesnake-shoe.cyclic.app/:splat"
+  status = 200
