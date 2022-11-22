@@ -11,7 +11,7 @@ export const UserList = () => {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [userData]);
 
   // EDIT
   const handleEdit = async (user) => {
