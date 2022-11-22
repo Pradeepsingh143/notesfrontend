@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 export const UserList = () => {
   const [userData, setUserData] = useState(null);
-
   const fetchUserData = async () => {
     const resp = await axios.get("/getUsers");
-
-    // if No users are there please dont set the values
-    if (resp.data.users.length >= 0) {
-      setUserData(resp.data.users);
-    }
+      if (resp.data.users.length >= 0) {
+        setUserData(resp.data.users)
+      }
   };
 
   useEffect(() => {
@@ -62,8 +59,7 @@ export const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {userData &&
-                userData.map((user) => (
+              {userData && userData.map((user) => (
                   <tr key={user.email}>
                     <td className="px-4 py-3">{user.name}</td>
                     <td className="px-4 py-3">{user.email}</td>
