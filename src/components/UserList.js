@@ -1,12 +1,16 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 export const UserList = () => {
   const [userData, setUserData] = useState(null);
+
   const fetchUserData = async () => {
     const resp = await axios.get("/getUsers");
-      if (resp.data.users.length >= 0) {
-        setUserData(resp.data.users)
-      }
+    console.log(resp);
+
+    // if No users are there please dont set the values
+    if (resp.data.users.length > 0) {
+      setUserData(resp.data.users);
+    }
   };
 
   useEffect(() => {
@@ -21,16 +25,18 @@ export const UserList = () => {
     if (!userName || !userEmail) {
       alert("Please Enter Name and Email Both");
     } else {
-    await axios.put(`/editUser/${user._id}`, {
+      const resp = await axios.put(`/editUser/${user._id}`, {
         name: userName,
         email: userEmail,
       });
+      console.log(resp);
     }
   };
 
   // DELETE
   const handleDelete = async (userId) => {
-  await axios.delete(`/deleteUser/${userId}`);
+    const resp = await axios.delete(`/deleteUser/${userId}`);
+    console.log(resp);
   };
   return (
     <section className="text-gray-600 body-font">
@@ -59,8 +65,9 @@ export const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {userData && userData.map((user) => (
-                  <tr key={user.email}>
+              {userData &&
+                userData.map((user) => (
+                  <tr>
                     <td className="px-4 py-3">{user.name}</td>
                     <td className="px-4 py-3">{user.email}</td>
                     <td className="px-4 py-3">
