@@ -55,7 +55,7 @@ export const UserList = () => {
             </thead>
             <tbody>
               {userData && userData.length === 0 ? <p>Nothing to preview list is empty</p>: (
-                userData.map((user) => (
+                userData && userData.map((user) => (
                     <tr>
                       <td className="px-4 py-3">{user.name}</td>
                       <td className="px-4 py-3">{user.email}</td>
