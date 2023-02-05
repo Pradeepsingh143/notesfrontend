@@ -1,9 +1,9 @@
 import "./App.css";
 import { Form } from "./components/Form";
 import { UserList } from "./components/UserList";
-import axios from "axios";
+// import axios from "axios";
 
-axios.defaults.baseURL = 'https://talented-jade-capris.cyclic.app/';
+// axios.defaults.baseURL = 'https://talented-jade-capris.cyclic.app/';
 
 function App() {
   return (
