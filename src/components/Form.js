@@ -20,6 +20,7 @@ export const Form = () => {
       fetchUserData();
     }catch(error){
       console.log(error?.message);
+      console.log(error);
       setErrMessage({
         message: error?.message || "SomeThing went wrong or email already in list",
         status: true
