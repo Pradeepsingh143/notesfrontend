@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from "react";
+import useUserData from "../hooks/useUserData";
 import axios from "axios";
 export const UserList = () => {
-  const [userData, setUserData] = useState(null);
+  const {userData, fetchUserData} = useUserData();
 
-  const fetchUserData = async () => {
-    const resp = await axios.get("/getUsers");
-    console.log(resp);
-
-    // if No users are there please dont set the values
-    if (resp.data.users.length > 0) {
-      setUserData(resp.data.users);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, [userData]);
-
+ 
   // EDIT
   const handleEdit = async (user) => {
     const userName = prompt("Enter your new name");
@@ -29,6 +16,7 @@ export const UserList = () => {
         name: userName,
         email: userEmail,
       });
+      fetchUserData();
       console.log(resp);
     }
   };
@@ -37,6 +25,7 @@ export const UserList = () => {
   const handleDelete = async (userId) => {
     const resp = await axios.delete(`/deleteUser/${userId}`);
     console.log(resp);
+    fetchUserData();
   };
   return (
     <section className="text-gray-600 body-font">

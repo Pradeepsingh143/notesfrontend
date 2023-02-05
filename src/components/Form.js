@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import useUserData from "../hooks/useUserData";
 
 export const Form = () => {
+  const {fetchUserData} = useUserData();
   // To Store the value from Frontend
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -13,7 +15,7 @@ export const Form = () => {
       email: userEmail,
     };
     await axios.post("/createUser", data);
-
+    fetchUserData();
   };
   // To handle the Default
   const handleSubmit = (event) => {
