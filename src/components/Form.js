@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useUserData from "../hooks/useUserData";
 
 export const Form = () => {
-  const {fetchUserData} = useUserData();
+  const { fetchUserData } = useUserData();
   // To Store the value from Frontend
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [errMessage, setErrMessage] = useState({message: "", status: false});
+  const [errMessage, setErrMessage] = useState({ message: "", status: false });
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const clearErrMessagge = setTimeout(() => {
+      setErrMessage({
+        message: "",
+        status: false,
+      });
+    }, 4000);
+    return () => {
+      clearTimeout(clearErrMessagge);
+    };
+  }, [errMessage.status]);
 
   // Function to send the Data
   const submitData = async () => {
-    try{
+    setLoading(true);
+    try {
       const data = {
         name: userName,
         email: userEmail,
       };
       await axios.post("/createUser", data);
       fetchUserData();
-    }catch(error){
-      console.log(error?.message);
+      setLoading(false);
+    } catch (error) {
       console.log(error);
       setErrMessage({
-        message: error?.message || "SomeThing went wrong or email already in list",
-        status: true
-      })
+        message:
+          error?.response?.data?.message ||
+          "SomeThing went wrong or email already in list",
+        status: true,
+      });
+    } finally {
+      setLoading(false);
     }
   };
   // To handle the Default
@@ -88,18 +106,23 @@ export const Form = () => {
                 </div>
                 <div className="p-2 w-full">
                   <button
+                    disabled={loading ? true : false}
                     type="submit"
                     className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                   >
                     Submit
                   </button>
                 </div>
+                {loading? <p className="mx-auto text-green mt-3">...Loading</p> :errMessage.status ? (
+                  <p className="mx-auto text-red mt-3">{errMessage.message}</p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
         </section>
       </form>
-      {errMessage.status ? {errMessage} : ""}
     </div>
   );
 };

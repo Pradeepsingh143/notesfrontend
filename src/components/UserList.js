@@ -54,7 +54,7 @@ export const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? "loading..." : (
+              {loading ? <p className="mx-auto text-green mt-3 p-4">...Loading</p> : (
                 userData && userData.length === 0 ? <p className="p-4">Nothing to preview list is empty</p>: (
                   userData && userData.map((user, index) => (
                       <tr key={index}>
