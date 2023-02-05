@@ -7,15 +7,24 @@ export const Form = () => {
   // To Store the value from Frontend
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [errMessage, setErrMessage] = useState({message: "", status: false});
 
   // Function to send the Data
   const submitData = async () => {
-    const data = {
-      name: userName,
-      email: userEmail,
-    };
-    await axios.post("/createUser", data);
-    fetchUserData();
+    try{
+      const data = {
+        name: userName,
+        email: userEmail,
+      };
+      await axios.post("/createUser", data);
+      fetchUserData();
+    }catch(error){
+      console.log(error?.message);
+      setErrMessage({
+        message: error?.message || "SomeThing went wrong or email already in list",
+        status: true
+      })
+    }
   };
   // To handle the Default
   const handleSubmit = (event) => {
@@ -89,6 +98,7 @@ export const Form = () => {
           </div>
         </section>
       </form>
+      {errMessage.status ? {errMessage} : ""}
     </div>
   );
 };
