@@ -1,7 +1,7 @@
 import useUserData from "../hooks/useUserData";
 import axios from "axios";
 export const UserList = () => {
-  const {userData, fetchUserData} = useUserData();
+  const {loading, userData, fetchUserData} = useUserData();
 
  
   // EDIT
@@ -54,29 +54,31 @@ export const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {userData && userData.length === 0 ? <p className="p-4">Nothing to preview list is empty</p>: (
-                userData && userData.map((user, index) => (
-                    <tr key={index}>
-                      <td className="px-4 py-3">{user.name}</td>
-                      <td className="px-4 py-3">{user.email}</td>
-                      <td className="px-4 py-3">
-                        <button
-                          className="hover:text-green-500"
-                          onClick={() => handleEdit(user)}
-                        >
-                          Edit
-                        </button>
-                      </td>
-                      <td className="px-4 py-3 text-lg text-gray-900">
-                        <button
-                          className="hover:text-red-500"
-                          onClick={() => handleDelete(user._id)}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  )))}
+              {loading ? "loading..." : (
+                userData && userData.length === 0 ? <p className="p-4">Nothing to preview list is empty</p>: (
+                  userData && userData.map((user, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-3">{user.name}</td>
+                        <td className="px-4 py-3">{user.email}</td>
+                        <td className="px-4 py-3">
+                          <button
+                            className="hover:text-green-500"
+                            onClick={() => handleEdit(user)}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                        <td className="px-4 py-3 text-lg text-gray-900">
+                          <button
+                            className="hover:text-red-500"
+                            onClick={() => handleDelete(user._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    )))
+              )}
             </tbody>
           </table>
         </div>
